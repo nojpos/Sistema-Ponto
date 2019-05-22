@@ -18,44 +18,72 @@ def lista_frequencia(request):
     frequencia=Frequencia.objects.all()
     return render(request, 'app_ponto/frequencia.html', {'frequencia': frequencia})
 
+
+#ESSA FUNÇÃO RECEBE A HORA ATUAL E A CONFIGURAÇÃO DE HORA E RETORNA SE A HORA É INCONSISTENRE OU CONSISTENTE (Falta validar se já passaram 15 min
+#da hora configurada)
+def verificar_hora(hora_atual, config_hora):
+
+    if hora_atual.hour == config_hora.hour:
+        if hora_atual.minute >= config_hora.minute + 15:
+            inco = StatusPonto.objects.get(id=2)
+            return inco
+        else:
+            con = StatusPonto.objects.get(id=1)
+            return con
+    elif hora_atual.hour < config_hora.hour:
+        con = StatusPonto.objects.get(id=1)
+        return con
+    else:
+        inco = StatusPonto.objects.get(id=2)
+        return inco
+
+#Função para testes
 @login_required
 def teste_registro_ponto(request):
 
+    # Recupera o ID do usuáio autenticado
     user = request.user.id
     print('Usuário', user)
 
+    #Recupera a hora atual
     data_atual = datetime.now()
     print('Data Atual', data_atual.date())
 
+    #Recupera a hora atual
     hora_atual = datetime.now()
     print('Hora Atual', hora_atual.time())
 
 
+    #Verifica a quantidade de registros da tebela frequencia do dia atual para usuario logado
     qtd = Frequencia.objects.filter(funcionario=user, data_resgistro=data_atual.date()).count()
-    print('Quantidade Id User', qtd)
+    #print('Quantidade Id User', qtd)
 
 
+    #Recupera a instancia do funcionário buscando pelo o usuário logado
     func = Funcionario.objects.get(usuario=user)
     print('Id Funcionario = ', func.id)
 
+    #Verifica a quantidade de registros da tebela frequencia do dia atual para funcionário logado
     qtd_fun = Frequencia.objects.filter(funcionario=func.id, data_resgistro=data_atual.date()).count()
     print('Quantidade Id Funcionário', qtd_fun)
 
     #IMPRIMIR CONFIGURAÇÃO HORA
-    print(func.conf_hora.conf_hora_entrada_1)
+    #print('Configuração hora', func.conf_hora.conf_hora_saida_1)
+    #print('Configuração hora hora', func.conf_hora.conf_hora_entrada_1.hour)
+    #print('Configuração hora minuto', func.conf_hora.conf_hora_entrada_1.minute)
+    #print('Configuração hora segundos', func.conf_hora.conf_hora_entrada_1.second)
 
 
+    #Recupera a instacia do TipoPonto para adicionar no registro da tabela Frequencia.
     entrada = TipoPonto.objects.get(id=1)
     print(entrada)
     saida = TipoPonto.objects.get(id=2)
     print(saida)
 
-    if hora_atual.time() > func.conf_hora.conf_hora_entrada_1:
-        inco = StatusPonto.objects.get(id=2)
-        print('Hora maior = ', inco)
-    else:
-        con = StatusPonto.objects.get(id=1)
-        print('Hora maior = ', con)
+
+    print('Configuração hora', func.conf_hora.conf_hora_entrada_2)
+    print('Hora Atual', hora_atual.time())
+    print('O ponto é', verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_2))
 
 
     if qtd == 0:
@@ -129,37 +157,47 @@ def funcionario_new(request):
 '''
 
 
+#Função de registrar ponto - Produção
 @login_required
 def registar_ponto(request):
     form = FrequenciaForm()
 
+    #Recupera o ID do usuáio autenticado
     user = request.user.id
     print('Usuário', user)
 
+    #Recupera a hora atual
     hora_atual = datetime.now()
     print('Hora atual', hora_atual.time())
 
+    #Recupera a data atual
     data_atual = datetime.now()
     print('Data atual', data_atual.date())
 
+    #Recupera a instancia do funcionário buscando pelo o usuário logado
     func = Funcionario.objects.get(usuario=user)
     print('Id Funcionario = ', func.id)
 
+    #Verifica a quantidade de registros da tebela frequencia do dia atual para funcionário logado
     qtd_fun = Frequencia.objects.filter(funcionario=func.id, data_resgistro=data_atual.date()).count()
     print('Quantidade Id Funcionário', qtd_fun)
 
+    #Recupera a instacia do TipoPonto para adicionar no registro da tabela Frequencia.
     entrada = TipoPonto.objects.get(id=1)
     print(entrada)
     saida = TipoPonto.objects.get(id=2)
     print(saida)
 
 
+    #Verifica se é uma requisição do tipo POST
     if request.method == "POST":
         form = FrequenciaForm(request.POST)
 
+        #Verifica se o formulário é válido
         if form.is_valid():
             post = form.save(commit=False)
 
+            #Esses condicionais verificam a quantidade de registros que existem na frequencia para poder adicionar um novo registro
             if qtd_fun == 0:
                 post.hora_ponto = hora_atual.time()
                 post.funcionario = func

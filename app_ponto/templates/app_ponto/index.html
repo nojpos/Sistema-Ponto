@@ -1,9 +1,11 @@
 <h1>Bem-Vindo</h1>
-
-
 {% if user.is_authenticated %}
-    <p><a href="{% url 'registar_ponto'%}">Registrar ponto</a></p>
 
+    {% for f in funcionario %}
+        {{ f.nome }}
+    {% endfor %}
+
+    <p><a href="{% url 'registar_ponto'%}">Registrar ponto</a></p>
 
      <p><a href="{% url 'logout'%}">Logout</a></p>
 {% endif %}
