@@ -1,12 +1,16 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, FormView
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib import messages
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-from .models import Frequencia, Funcionario, ConfiguracaoHora
+from .models import Frequencia, Funcionario, ConfiguracaoHora, TipoPonto, StatusPonto
 from .forms import FrequenciaForm
+
+
+@login_required
+def home_page(request):
+    return render(request, 'app_ponto/index.html')
 
 
 @login_required
@@ -16,15 +20,42 @@ def lista_frequencia(request):
 
 @login_required
 def teste_registro_ponto(request):
+
     user = request.user.id
-    print(user)
+    print('Usuário', user)
+
     data_atual = datetime.now()
-    print(data_atual.date())
+    print('Data Atual', data_atual.date())
+
     hora_atual = datetime.now()
-    print(hora_atual.time())
+    print('Hora Atual', hora_atual.time())
 
 
     qtd = Frequencia.objects.filter(funcionario=user, data_resgistro=data_atual.date()).count()
+    print('Quantidade Id User', qtd)
+
+
+    func = Funcionario.objects.get(usuario=user)
+    print('Id Funcionario = ', func.id)
+
+    qtd_fun = Frequencia.objects.filter(funcionario=func.id, data_resgistro=data_atual.date()).count()
+    print('Quantidade Id Funcionário', qtd_fun)
+
+    #IMPRIMIR CONFIGURAÇÃO HORA
+    print(func.conf_hora.conf_hora_entrada_1)
+
+
+    entrada = TipoPonto.objects.get(id=1)
+    print(entrada)
+    saida = TipoPonto.objects.get(id=2)
+    print(saida)
+
+    if hora_atual.time() > func.conf_hora.conf_hora_entrada_1:
+        inco = StatusPonto.objects.get(id=2)
+        print('Hora maior = ', inco)
+    else:
+        con = StatusPonto.objects.get(id=1)
+        print('Hora maior = ', con)
 
 
     if qtd == 0:
@@ -37,6 +68,9 @@ def teste_registro_ponto(request):
         return HttpResponse('Quantidade = {}'.format(qtd))
 
     elif qtd == 3:
+        return HttpResponse('Quantidade = {}'.format(qtd))
+
+    else:
         return HttpResponse('Quantidade = {}'.format(qtd))
 
 
@@ -93,6 +127,8 @@ def funcionario_new(request):
 
     return render(request, 'app_ponto/registro_ponto.html', {'form': form})
 '''
+
+
 @login_required
 def registar_ponto(request):
     form = FrequenciaForm()
@@ -106,8 +142,17 @@ def registar_ponto(request):
     data_atual = datetime.now()
     print('Data atual', data_atual.date())
 
-    qtd = Frequencia.objects.filter(funcionario=user, data_resgistro=data_atual.date()).count()
-    print('Quantidade', qtd)
+    func = Funcionario.objects.get(usuario=user)
+    print('Id Funcionario = ', func.id)
+
+    qtd_fun = Frequencia.objects.filter(funcionario=func.id, data_resgistro=data_atual.date()).count()
+    print('Quantidade Id Funcionário', qtd_fun)
+
+    entrada = TipoPonto.objects.get(id=1)
+    print(entrada)
+    saida = TipoPonto.objects.get(id=2)
+    print(saida)
+
 
     if request.method == "POST":
         form = FrequenciaForm(request.POST)
@@ -115,21 +160,32 @@ def registar_ponto(request):
         if form.is_valid():
             post = form.save(commit=False)
 
-            if qtd == 0:
-                post.hora_entrada_1 = hora_atual.time()
+            if qtd_fun == 0:
+                post.hora_ponto = hora_atual.time()
+                post.funcionario = func
+                post.tipo_ponto = entrada
                 post.save()
 
-            elif qtd == 1:
-                post.hora_saida_1 = hora_atual.time()
+            elif qtd_fun == 1:
+                post.hora_ponto = hora_atual.time()
+                post.funcionario = func
+                post.tipo_ponto = saida
                 post.save()
 
-            elif qtd == 2:
-                post.hora_entrada_2 = hora_atual.time()
+            elif qtd_fun == 2:
+                post.hora_ponto = hora_atual.time()
+                post.funcionario = func
+                post.tipo_ponto = entrada
                 post.save()
 
-            elif qtd == 3:
-                post.hora_saida_2 = hora_atual.time()
+            elif qtd_fun == 3:
+                post.hora_ponto = hora_atual.time()
+                post.funcionario = func
+                post.tipo_ponto = saida
                 post.save()
+
+            else:
+                return HttpResponse('O funcionário {} já registrou o ponto 4 vezes'.format(func))
 
             return redirect('frequencia')
 

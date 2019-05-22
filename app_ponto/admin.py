@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import ConfiguracaoHora, CargoFuncionario, Funcionario, StatusPonto, Frequencia
+from .models import ConfiguracaoHora, CargoFuncionario, Funcionario, StatusPonto, Frequencia, TipoPonto
 
 
 @admin.register(ConfiguracaoHora)
@@ -24,4 +24,9 @@ class StatusPontoAdmin(admin.ModelAdmin):
 
 @admin.register(Frequencia)
 class FrequenciaAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(TipoPonto)
+class TipoPontoAdmin(admin.ModelAdmin):
     pass
