@@ -64,6 +64,15 @@
                                                      <br>
 													 <b>Tipo registro: </b> {{ funcionario.tipo_ponto }}
 												 </div>
+                                                <br>
+
+                                                {% if funcionario.status_ponto.descricao == "Inconsistente" %}
+                                                        {% if funcionario.juntificativa == Null %}
+	                                                    {% endif %}
+                                                    {% endif %}
+                                                    {% if funcionario.juntificativa != Null %}
+                                                        <p><b> Justificativa: </b>{{ funcionario.juntificativa }}</p>
+                                                {% endif %}
 
 											<hr>
 											{% endif %}
