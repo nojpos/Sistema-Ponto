@@ -1,11 +1,16 @@
-<h1>Bem-Vindo</h1>
+<h1>Bem-Vindo {{ func }}</h1>
 {% if user.is_authenticated %}
-
-    {% for f in funcionario %}
-        {{ f.nome }}
-    {% endfor %}
 
     <p><a href="{% url 'registar_ponto'%}">Registrar ponto</a></p>
 
-     <p><a href="{% url 'logout'%}">Logout</a></p>
+    {% if func.cargo.descricao_cargo == 'Gerente' %}
+        <p><a href="{% url 'relatorio'%}">Relatorio</a></p>
+    {% endif %}
+
+    <p><a href="{% url 'frequencia'%}">Frequencia</a></p>
+
+    <p><a href="{% url 'nao_justificados'%}">Justificar frequencia não jsutificada</a></p>
+
+    <p><a href="{% url 'logout'%}">Sair</a></p>
+
 {% endif %}

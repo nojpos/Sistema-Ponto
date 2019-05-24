@@ -6,4 +6,11 @@ class FrequenciaForm(forms.ModelForm):
 
     class Meta:
         model = Frequencia
-        fields = ('status_ponto', 'juntificativa',)
+        fields = ()
+
+
+class JustificativaForm(forms.ModelForm):
+
+    class Meta:
+        model = Frequencia
+        fields = ('juntificativa',)

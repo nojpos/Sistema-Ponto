@@ -29,6 +29,9 @@ class Funcionario(models.Model):
     conf_hora = models.ForeignKey(ConfiguracaoHora, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='COnfiguração da hora')
     nome = models.CharField('Nome do funcionário', max_length=128)
 
+    def get_funcionario(self):
+        return Funcionario.objects.filter(lider=self)
+
     def __str__(self):
         return self.nome
 

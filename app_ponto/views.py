@@ -5,22 +5,38 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from .models import Frequencia, Funcionario, ConfiguracaoHora, TipoPonto, StatusPonto
-from .forms import FrequenciaForm
+from .forms import FrequenciaForm, JustificativaForm
 
 
 @login_required
 def home_page(request):
-    return render(request, 'app_ponto/index.html')
+    frequencia = Frequencia.objects.all()
+    user = request.user
+    func = Funcionario.objects.get(usuario=user)
+    return render(request, 'app_ponto/index.html', {'frequencia': frequencia, 'user': user, 'func': func})
 
 
 @login_required
 def lista_frequencia(request):
     frequencia=Frequencia.objects.all()
-    return render(request, 'app_ponto/frequencia.html', {'frequencia': frequencia})
+    user = request.user
+    return render(request, 'app_ponto/frequencia.html', {'frequencia': frequencia, 'user': user})
 
 
-#ESSA FUNÇÃO RECEBE A HORA ATUAL E A CONFIGURAÇÃO DE HORA E RETORNA SE A HORA É INCONSISTENRE OU CONSISTENTE (Falta validar se já passaram 15 min
-#da hora configurada)
+def lista_nao_justificados(request):
+    frequencia = Frequencia.objects.all()
+    user = request.user
+    return render(request, 'app_ponto/nao_justificados.html', {'frequencia': frequencia, 'user': user})
+
+
+def relatorio_inconsistentes(request):
+    frequencia = Frequencia.objects.all()
+    user = request.user
+    func = Funcionario.objects.get(usuario=user)
+    return render(request, 'app_ponto/relatorio_inconsistentes.html', {'frequencia': frequencia, 'user': user, 'func': func})
+
+
+#ESSA FUNÇÃO RECEBE A HORA ATUAL E A CONFIGURAÇÃO DE HORA E RETORNA SE A HORA É INCONSISTENRE OU CONSISTENTE
 def verificar_hora(hora_atual, config_hora):
 
     if hora_atual.hour == config_hora.hour:
@@ -81,9 +97,9 @@ def teste_registro_ponto(request):
     print(saida)
 
 
-    print('Configuração hora', func.conf_hora.conf_hora_entrada_2)
+    print('Configuração hora', func.conf_hora.conf_hora_entrada_1)
     print('Hora Atual', hora_atual.time())
-    print('O ponto é', verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_2))
+    print('O ponto é', verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1))
 
 
     if qtd == 0:
@@ -100,61 +116,6 @@ def teste_registro_ponto(request):
 
     else:
         return HttpResponse('Quantidade = {}'.format(qtd))
-
-
-'''
-class RegitrarForm(FormView):
-    template_name = 'app_ponto/registrar.html'
-    form_class = RegistroPontoForm
-
-    def form_valid(self, form):
-        hora_atual = datetime.now()
-        print(hora_atual.time())
-        dados = form.clean()
-        s = Frequencia(juntificativa=dados['juntificativa'], )
-        s.hora_entrada_2=hora_atual.time()
-        s.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse('frequencia')
-
-
-def get_name(request):
-    # if this is a POST request we need to process the form data
-    if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = NameForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            # process the data in form.cleaned_data as required
-            # ...
-            # redirect to a new URL:
-            return HttpResponseRedirect('/thanks/')
-
-    # if a GET (or any other method) we'll create a blank form
-    else:
-        form = NameForm()
-
-    return render(request, 'app_ponto/name.html', {'form': form})
-
-
-def funcionario_new(request):
-    form = FuncionarioForm()
-
-    if request.method == "POST":
-        form = FuncionarioForm(request.POST)
-
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('frequencia')
-
-    else:
-        form = FuncionarioForm()
-
-    return render(request, 'app_ponto/registro_ponto.html', {'form': form})
-'''
 
 
 #Função de registrar ponto - Produção
@@ -202,6 +163,7 @@ def registar_ponto(request):
                 post.hora_ponto = hora_atual.time()
                 post.funcionario = func
                 post.tipo_ponto = entrada
+                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1)
                 post.save()
 
             elif qtd_fun == 1:
@@ -214,6 +176,7 @@ def registar_ponto(request):
                 post.hora_ponto = hora_atual.time()
                 post.funcionario = func
                 post.tipo_ponto = entrada
+                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1)
                 post.save()
 
             elif qtd_fun == 3:
@@ -231,3 +194,15 @@ def registar_ponto(request):
             form = FrequenciaForm()
 
     return render(request, 'app_ponto/registro_ponto.html', {'form': form})
+
+
+def justificar_inconsistente(request, frequencia_id):
+    frequencia = Frequencia.objects.get(pk=frequencia_id)
+    form = JustificativaForm(request.POST or None, instance=frequencia)
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        return render(request, 'app_ponto/justificar_ponto.html', {'form': form, 'frequencia': frequencia})

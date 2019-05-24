@@ -1,0 +1,34 @@
+<h1>Bem-Vindo {{ func }}</h1>
+{% if user.is_authenticated %}
+
+    {% for i in func.get_funcionario %}
+
+        {% for funcionario in frequencia %}
+
+            {% if funcionario.funcionario.lider == func %}
+
+                {% if funcionario.status_ponto.descricao == "Inconsistente" %}
+
+                     <div>
+                        {{ funcionario.funcionario.nome }}
+                        <br>
+                        {{ funcionario.hora_ponto }}
+                         <br>
+                        {{ funcionario.data_resgistro }}
+                        <br>
+                        {{ funcionario.status_ponto }}
+                        <br>
+                        {{ funcionario.ip_registro }}
+                        <br>
+                         {{ funcionario.tipo_ponto }}
+                     </div>
+
+                <hr>
+                {% endif %}
+            {% endif %}
+
+        {% endfor %}
+
+    {% endfor %}
+
+{% endif %}

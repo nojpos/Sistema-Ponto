@@ -1,13 +1,14 @@
-<h1>Frequencia</h1>
+<h1>Não justificados</h1>
 {% if user.is_authenticated %}
 
     {% for funcionario in frequencia %}
 
         {% if funcionario.funcionario.usuario == user %}
 
+            {% if funcionario.status_ponto.descricao == "Inconsistente" and funcionario.tipo_ponto.descricao == "Entrada" %}
 
                 <div>
-                    {{ funcionario.funcionario.nome }}
+
                     <br>
                     {{ funcionario.hora_ponto }}
                     <br>
@@ -27,6 +28,7 @@
                     {% endif %}
 
                 <hr>
+            {% endif %}
 
         {% endif %}
 
