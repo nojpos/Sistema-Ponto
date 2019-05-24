@@ -1,16 +1,56 @@
-<h1>Bem-Vindo {{ func }}</h1>
 {% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+    <head>
+            <style type="text/css">
+                .click
+                {
+                    color: red;
+                }
+            </style>
 
-    <p><a href="{% url 'registar_ponto'%}">Registrar ponto</a></p>
+        <title>Dot-Check</title>
+        <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+        <meta charset="UTF-8">
 
-    {% if func.cargo.descricao_cargo == 'Gerente' %}
-        <p><a href="{% url 'relatorio'%}">Relatorio</a></p>
-    {% endif %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
 
-    <p><a href="{% url 'frequencia'%}">Frequencia</a></p>
+    <body>
 
-    <p><a href="{% url 'nao_justificados'%}">Justificar frequencia não jsutificada</a></p>
+            <div class="container col-md-12" style="margin-top: 10px">
 
-    <p><a href="{% url 'logout'%}">Sair</a></p>
+                <div class="card border-primary mb-3">
+
+                    <h5 class="card-header text-center border-primary">Bem-Vindo {{ func }}</h5>
+                    <div class="card-body">
+
+                        <h1 id="txt" class="card-title text-center"></h1>
+                        <br>
+                            <div class="text-center">
+                                <p></p>
+                            </div>
+
+                            <div class="col-md-12">
+                                <a class="btn btn-outline-primary" href="{% url 'registar_ponto'%}" role="button">Registrar Ponto</a>
+
+								{% if func.cargo.descricao_cargo == 'Gerente' %}
+									<a class="btn btn-outline-primary" href="{% url 'relatorio'%}" role="button">Relatório</a>
+								{% endif %}
+
+                                <a class="btn btn-outline-primary" href="{% url 'frequencia'%}" role="button">Frequência</a>
+
+                                <a class="btn btn-outline-dark" href="{% url 'logout'%}" role="button">Sair</a>
+                            </div>
+
+                    </div>
+                </div>
+
+            </div>
+    </body>
+
+</html>
 
 {% endif %}

@@ -203,6 +203,6 @@ def justificar_inconsistente(request, frequencia_id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('home')
+            return redirect('frequencia')
     else:
         return render(request, 'app_ponto/justificar_ponto.html', {'form': form, 'frequencia': frequencia})

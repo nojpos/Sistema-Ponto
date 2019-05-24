@@ -1,35 +1,86 @@
-<h1>Frequencia</h1>
 {% if user.is_authenticated %}
+<!DOCTYPE html>
+<html>
+    <head>
+            <style type="text/css">
+                .click
+                {
+                    color: red;
+                }
+            </style>
 
-    {% for funcionario in frequencia %}
+        <title>Frequência</title>
+        <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+        <meta charset="UTF-8">
 
-        {% if funcionario.funcionario.usuario == user %}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+
+    <body>
+
+            <div class="container col-md-12" style="margin-top: 10px">
+
+                <div class="card border-primary mb-3">
+
+                    <h5 class="card-header text-center border-primary">Frequência</h5>
+                    <div class="card-body">
+
+                        <div>
+                            <a class="btn btn-outline-primary" href="{% url 'home'%}" role="button">Início</a>
+                        </div>
+
+                        <hr>
+
+                        <h1 id="txt" class="card-title text-center"></h1>
+                        <br>
+                            <div class="text-center">
+                                <p></p>
+                            </div>
+
+                            <div>
+
+								    {% for funcionario in frequencia %}
+
+										{% if funcionario.funcionario.usuario == user %}
 
 
-                <div>
-                    {{ funcionario.funcionario.nome }}
-                    <br>
-                    {{ funcionario.hora_ponto }}
-                    <br>
-                    {{ funcionario.data_resgistro }}
-                    <br>
-                    {{ funcionario.status_ponto }}
-                    <br>
-                    {{ funcionario.ip_registro }}
-                    <br>
-                    {{ funcionario.tipo_ponto }}
-                    <br>
+												<div>
+                                                     <b>Nome: </b>{{ funcionario.funcionario.nome }}
+                                                     <br>
+                                                     <b>Hora do registro: </b>{{ funcionario.hora_ponto }}
+													 <br>
+                                                     <b>Datado registro: </b>{{ funcionario.data_resgistro }}
+                                                     <br>
+                                                     <b>Status do registro: </b>{{ funcionario.status_ponto }}
+                                                     <br>
+                                                     <b>IP da maquina: </b>{{ funcionario.ip_registro }}
+                                                     <br>
+													 <b>Tipo registro: </b> {{ funcionario.tipo_ponto }}
+												 </div>
+                                                    <br>
+													{% if funcionario.juntificativa != Null and funcionario.juntificativa != '' %}
+														<p><b> Justificativa: </b>{{ funcionario.juntificativa }}</p>
+													{% else %}
+														<a class="btn btn-danger" href="justificar/{{funcionario.pk}}" role="button">Justificar</a>
+													{% endif %}
+
+												<hr>
+
+										{% endif %}
+
+									{% endfor %}
+
+
+                            </div>
+
+                    </div>
                 </div>
-                    {% if funcionario.juntificativa != Null and funcionario.juntificativa != '' %}
-                        <p> Justufucativa: {{ funcionario.juntificativa }}</p>
-                    {% else %}
-                        <a href="justificar/{{funcionario.pk}}">Justificar</a>
-                    {% endif %}
 
-                <hr>
+            </div>
+    </body>
 
-        {% endif %}
-
-    {% endfor %}
+</html>
 
 {% endif %}

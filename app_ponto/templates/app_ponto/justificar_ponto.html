@@ -1,10 +1,67 @@
-<h1>Nova postagem</h1>
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
+    <head>
+            <style type="text/css">
+                .click
+                {
+                    color: red;
+                }
+            </style>
 
-    <form action="{% url 'justificar' frequencia.pk %}" method="POST">
+        <title>Justificar</title>
+        <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+        <meta charset="UTF-8">
 
-        {% csrf_token %}
-        {{ form.as_p }}
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
 
-        <button type="submit" >Salvar</button>
+    <body>
 
-    </form>
+            <div class="container col-md-12" style="margin-top: 10px">
+
+                <div class="card border-primary mb-3">
+
+                    <h5 class="card-header text-center border-primary">Justificar Ponto</h5>
+                    <div class="card-body">
+
+
+                        <h1 id="txt" class="card-title text-center"></h1>
+                        <br>
+                            <div class="text-center">
+                                <p></p>
+                            </div>
+
+                            <div class="col-12">
+
+								    <form action="{% url 'justificar' frequencia.pk %}" method="POST" class="col-12">
+
+										{% csrf_token %}
+										<div class="col-12">
+											{{ form|bootstrap }}
+										</div>
+
+                                        <div class="col-12 d-flex justify-content-center">
+                                                <button type="submit" class="btn btn-outline-success rounded-pill col-5" name="Salvar" id="btnEnviar">Salvar</button>
+                                        </div>
+
+									</form>
+
+                                    <br>
+                                    <hr>
+
+                                    <div>
+                                        <a class="btn btn-outline-primary" href="{% url 'home'%}" role="button">Início</a>
+                                    </div>
+
+                            </div>
+
+                    </div>
+                </div>
+
+            </div>
+    </body>
+
+</html>
