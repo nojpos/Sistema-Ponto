@@ -33,16 +33,18 @@
                                 <p></p>
                             </div>
 
-                            <div class="col-md-12">
-                                <a class="btn btn-outline-primary" href="{% url 'registar_ponto'%}" role="button">Registrar Ponto</a>
+                            <div class="d-flex justify-content-center col-md-12">
+                                <div>
+                                    <a class="btn btn-outline-primary" href="{% url 'registar_ponto'%}" role="button">Registrar Ponto</a>
 
-								{% if func.cargo.descricao_cargo == 'Gerente' %}
-									<a class="btn btn-outline-primary" href="{% url 'relatorio'%}" role="button">Relatório</a>
-								{% endif %}
+                                    {% if func.cargo.descricao_cargo == 'Gerente' %}
+                                        <a class="btn btn-outline-primary" href="{% url 'relatorio'%}" role="button">Relatório</a>
+                                    {% endif %}
 
-                                <a class="btn btn-outline-primary" href="{% url 'frequencia'%}" role="button">Frequência</a>
+                                    <a class="btn btn-outline-primary" href="{% url 'frequencia'%}" role="button">Frequência</a>
 
-                                <a class="btn btn-outline-dark" href="{% url 'logout'%}" role="button">Sair</a>
+                                    <a class="btn btn-outline-dark" href="{% url 'logout'%}" role="button">Sair</a>
+                                </div>
                             </div>
 
                     </div>

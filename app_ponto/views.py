@@ -170,19 +170,21 @@ def registar_ponto(request):
                 post.hora_ponto = hora_atual.time()
                 post.funcionario = func
                 post.tipo_ponto = saida
+                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_1)
                 post.save()
 
             elif qtd_fun == 2:
                 post.hora_ponto = hora_atual.time()
                 post.funcionario = func
                 post.tipo_ponto = entrada
-                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1)
+                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_2)
                 post.save()
 
             elif qtd_fun == 3:
                 post.hora_ponto = hora_atual.time()
                 post.funcionario = func
                 post.tipo_ponto = saida
+                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_2)
                 post.save()
 
             else:

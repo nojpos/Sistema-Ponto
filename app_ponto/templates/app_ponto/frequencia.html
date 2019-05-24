@@ -60,11 +60,15 @@
 													 <b>Tipo registro: </b> {{ funcionario.tipo_ponto }}
 												 </div>
                                                     <br>
-													{% if funcionario.juntificativa != Null and funcionario.juntificativa != '' %}
-														<p><b> Justificativa: </b>{{ funcionario.juntificativa }}</p>
-													{% else %}
-														<a class="btn btn-danger" href="justificar/{{funcionario.pk}}" role="button">Justificar</a>
-													{% endif %}
+													{% if funcionario.status_ponto.descricao == "Inconsistente" %}
+                                                        {% if funcionario.juntificativa == Null %}
+		                                                    <a class="btn btn-danger" href="justificar/{{funcionario.pk}}" role="button">Justificar</a>
+	                                                    {% endif %}
+                                                    {% endif %}
+                                                    {% if funcionario.juntificativa != Null %}
+                                                        <p><b> Justificativa: </b>{{ funcionario.juntificativa }}</p>
+                                                    {% endif %}
+
 
 												<hr>
 

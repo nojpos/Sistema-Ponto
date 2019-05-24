@@ -4,10 +4,11 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('frequencia/', lista_frequencia, name='frequencia'),
-    path('', home_page, name='home'),
-    path('teste/ponto', teste_registro_ponto, name='teste_ponto'),
-    path('registrar/ponto', registar_ponto, name='registar_ponto'),
+    path('home/', home_page, name='home'),
+    path('teste/ponto/', teste_registro_ponto, name='teste_ponto'),
+    path('', RedirectView.as_view(url='registrar/ponto/')),
+    path('registrar/ponto/', registar_ponto, name='registar_ponto'),
     path('frequencia/justificar/<int:frequencia_id>/', justificar_inconsistente, name='justificar'),
-    path('relatorio', relatorio_inconsistentes, name='relatorio'),
+    path('relatorio/', relatorio_inconsistentes, name='relatorio'),
     path('nao/justificados/', lista_nao_justificados, name='nao_justificados'),
 ]
