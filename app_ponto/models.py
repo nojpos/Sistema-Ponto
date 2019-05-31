@@ -24,9 +24,9 @@ class CargoFuncionario(models.Model):
 
 class Funcionario(models.Model):
     usuario = models.OneToOneField(User, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Usuário')
-    lider = models.ForeignKey('Funcionario', on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Lider')
+    lider = models.ForeignKey('Funcionario', on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Chefe Imediato')
     cargo = models.ForeignKey(CargoFuncionario, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Cargo do funcionário')
-    conf_hora = models.ForeignKey(ConfiguracaoHora, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='COnfiguração da hora')
+    conf_hora = models.ForeignKey(ConfiguracaoHora, on_delete=models.SET_NULL, blank=True, null=True, verbose_name='Configuração da hora')
     nome = models.CharField('Nome do funcionário', max_length=128)
 
     def get_funcionario(self):

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+
+    <head>
+            <style type="text/css">
+                .click
+                {
+                    color: red;
+                }
+            </style>
+
+        <title>Registrar ponto</title>
+        <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+        <meta charset="UTF-8">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    </head>
+
+    <body onload="startTime()">
+
+            <div class="container col-md-12" style="margin-top: 10px">
+
+                <div class="card border-primary mb-3">
+
+                    <h5 class="card-header text-center border-primary">Registrar ponto</h5>
+                    <div class="card-body">
+
+                        <h1 id="txt" class="card-title text-center"></h1>
+                        <br>
+                            <div class="text-center">
+                                <p>Clique no botão "Registrar" para registrar seu ponto</p>
+                            </div>
+                            <div class="d-flex justify-content-center col-12">
+							    <form method="POST" class="post-form col-12 d-flex justify-content-center">
+									{% csrf_token %}
+									{{ form.as_p }}
+
+                                    <button type="submit" class="btn btn-outline-success rounded-pill col-4" name="Enviar" id="btnEnviar">Registrar</button>
+
+                                </form>
+                            </div>
+                        <br>
+                        <br>
+                        <hr>
+                            <div>
+                                <a class="btn btn-outline-primary" href="{% url 'home'%}" role="button">Início</a>
+                            </div>
+
+                    </div>
+                </div>
+
+            </div>
+    </body>
+
+
+    <script>
+            function startTime() {
+              var today = new Date();
+              var h = today.getHours();
+              var m = today.getMinutes();
+              var s = today.getSeconds();
+              m = checkTime(m);
+              s = checkTime(s);
+              document.getElementById('txt').innerHTML =
+              h + ":" + m + ":" + s;
+              var t = setTimeout(startTime, 500);
+            }
+            function checkTime(i) {
+              if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+              return i;
+            }
+            </script>
+</html>

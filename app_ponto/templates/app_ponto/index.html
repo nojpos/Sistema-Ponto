@@ -35,15 +35,15 @@
 
                             <div class="d-flex justify-content-center col-md-12">
                                 <div>
-                                    <a class="btn btn-outline-primary" href="{% url 'registar_ponto'%}" role="button">Registrar Ponto</a>
+                                    <a class="btn btn-outline-primary" href="{% url 'registar_ponto'%}" style="height:120px; width:280px" role="button">Registrar Ponto</a>
 
                                     {% if func.cargo.descricao_cargo == 'Gerente' %}
-                                        <a class="btn btn-outline-primary" href="{% url 'relatorio'%}" role="button">Relatório</a>
+                                        <a class="btn btn-outline-primary" href="{% url 'relatorio'%}" style="height:120px; width:280px" role="button">Relatório</a>
                                     {% endif %}
 
-                                    <a class="btn btn-outline-primary" href="{% url 'frequencia'%}" role="button">Frequência</a>
+                                    <a class="btn btn-outline-primary" href="{% url 'frequencia'%}" style="height:120px; width:280px" role="button">Frequência</a>
 
-                                    <a class="btn btn-outline-dark" href="{% url 'logout'%}" role="button">Sair</a>
+                                    <a class="btn btn-outline-danger" href="{% url 'logout'%}" style="height:120px; width:280px" role="button">Sair</a>
                                 </div>
                             </div>
 

@@ -2,94 +2,93 @@
 
 <!DOCTYPE html>
 <html>
-    <head>
-            <style type="text/css">
+<head>
+    <style type="text/css">
                 .click
                 {
                     color: red;
                 }
-            </style>
 
-        <title>Relatório Inconsistente</title>
-        <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
-        <meta charset="UTF-8">
+    </style>
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    </head>
+    <title>Relatório Inconsistente</title>
+    <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+    <meta charset="UTF-8">
 
-    <body>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
 
-            <div class="container col-md-12" style="margin-top: 10px">
+<body>
 
-                <div class="card border-primary mb-3">
+<div class="container col-md-12" style="margin-top: 10px">
 
-                    <h5 class="card-header text-center border-primary">Relatório de Pontos Inconsistente</h5>
-                    <div class="card-body">
+    <div class="card border-primary mb-3">
 
-                        <div>
-                            <a class="btn btn-outline-primary" href="{% url 'home'%}" role="button">Início</a>
-                        </div>
+        <h5 class="card-header text-center border-primary">Relatório de Pontos Inconsistente</h5>
+        <div class="card-body">
 
-                        <hr>
+            <div>
+                <a class="btn btn-outline-primary" href="{% url 'home'%}" role="button">Início</a>
+            </div>
 
-                        <h1 id="txt" class="card-title text-center"></h1>
-                        <br>
-                            <div class="text-center">
-                                <p></p>
-                            </div>
+            <hr>
+
+            <h1 id="txt" class="card-title text-center"></h1>
+            <br>
+            <div class="text-center">
+                <p></p>
+            </div>
+
+            <div>
+
+                {% for funcionario in frequencia %}
+
+                    {% if funcionario.funcionario.lider == func %}
+
+                        {% if funcionario.status_ponto.descricao == "Inconsistente" %}
 
                             <div>
-
-
-								{% for i in func.get_funcionario %}
-
-									{% for funcionario in frequencia %}
-
-										{% if funcionario.funcionario.lider == func %}
-
-											{% if funcionario.status_ponto.descricao == "Inconsistente" %}
-
-												 <div>
-                                                     <b>Nome: </b>{{ funcionario.funcionario.nome }}
-                                                     <br>
-                                                     <b>Hora do registro: </b>{{ funcionario.hora_ponto }}
-													 <br>
-                                                     <b>Datado registro: </b>{{ funcionario.data_resgistro }}
-                                                     <br>
-                                                     <b>Status do registro: </b>{{ funcionario.status_ponto }}
-                                                     <br>
-                                                     <b>IP da maquina: </b>{{ funcionario.ip_registro }}
-                                                     <br>
-													 <b>Tipo registro: </b> {{ funcionario.tipo_ponto }}
-												 </div>
-                                                <br>
-
-                                                {% if funcionario.status_ponto.descricao == "Inconsistente" %}
-                                                        {% if funcionario.juntificativa == Null %}
-	                                                    {% endif %}
-                                                    {% endif %}
-                                                    {% if funcionario.juntificativa != Null %}
-                                                        <p><b> Justificativa: </b>{{ funcionario.juntificativa }}</p>
-                                                {% endif %}
-
-											<hr>
-											{% endif %}
-										{% endif %}
-
-									{% endfor %}
-
-								{% endfor %}
-
-
+                                <b>Nome: </b>{{ funcionario.funcionario.nome }}
+                                <br>
+                                <b>Hora do registro: </b>{{ funcionario.hora_ponto }}
+                                <br>
+                                <b>Datado registro: </b>{{ funcionario.data_resgistro }}
+                                <br>
+                                <b>Status do registro: </b>{{ funcionario.status_ponto }}
+                                <br>
+                                <b>IP da maquina: </b>{{ funcionario.ip_registro }}
+                                <br>
+                                <b>Tipo registro: </b> {{ funcionario.tipo_ponto }}
                             </div>
+                            <br>
 
-                    </div>
-                </div>
+                            {% if funcionario.status_ponto.descricao == "Inconsistente" %}
+                            {% if funcionario.juntificativa == Null %}
+                            {% endif %}
+                            {% endif %}
+                            {% if funcionario.juntificativa != Null %}
+                            <p><b> Justificativa: </b>{{ funcionario.juntificativa }}</p>
+                            {% endif %}
+
+                            <hr>
+                        {% endif %}
+                    {% endif %}
+
+                {% endfor %}
+
 
             </div>
-    </body>
+
+        </div>
+    </div>
+
+</div>
+</body>
 
 </html>
 {% endif %}

@@ -9,6 +9,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='registrar/ponto/')),
     path('registrar/ponto/', registar_ponto, name='registar_ponto'),
     path('frequencia/justificar/<int:frequencia_id>/', justificar_inconsistente, name='justificar'),
+    path('nao/justificados/justificar/<int:frequencia_id>/', justificar_inconsistente, name='justificar_nao_justificados'),
     path('relatorio/', relatorio_inconsistentes, name='relatorio'),
     path('nao/justificados/', lista_nao_justificados, name='nao_justificados'),
 ]

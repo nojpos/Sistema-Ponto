@@ -24,9 +24,11 @@ def lista_frequencia(request):
 
 
 def lista_nao_justificados(request):
-    frequencia = Frequencia.objects.all()
     user = request.user
-    return render(request, 'app_ponto/nao_justificados.html', {'frequencia': frequencia, 'user': user})
+    func = Funcionario.objects.get(usuario=user)
+    frequencia_inconsistente_nao_justificada = Frequencia.objects.filter(status_ponto=2, juntificativa=None,
+                                                                         funcionario=func.id)
+    return render(request, 'app_ponto/nao_justificados.html', {'nao_justificada': frequencia_inconsistente_nao_justificada, 'user': user})
 
 
 def relatorio_inconsistentes(request):
@@ -195,7 +197,7 @@ def registar_ponto(request):
         else:
             form = FrequenciaForm()
 
-    return render(request, 'app_ponto/registro_ponto.html', {'form': form})
+    return render(request, 'app_ponto/registro_ponto.html', {'form': form, 'qtd_fun': qtd_fun, 'func': func})
 
 
 def justificar_inconsistente(request, frequencia_id):

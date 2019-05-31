@@ -1,32 +1,53 @@
-{% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
-{% endif %}
+{% load bootstrap %}
+<!DOCTYPE html>
+<html>
 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
+<head>
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
+    <title>Login</title>
+    <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+    <meta charset="UTF-8">
 
-<input type="submit" value="login">
-<input type="hidden" name="next" value="{{ next }}">
-</form>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<body onload="startTime()">
+    <div class="container col-md-3" style="margin-top: 150px">
+        <div class="card border-primary mb-3">
+            <div class="columns is-mobile">
+                <div class="column is-half is-offset-one-quarter">
+                    <br>
+                    <h3 class="title is-size-3 d-flex justify-content-center">Login</h3>
+                    <hr>
+                    <form action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        {% for non_field_error in form.non_field_errors %}
+                        <p class="help is-danger">{{ non_field_error }}</p>
+                        {% endfor %}
+                        {% for field in form %}
+                        <div class="field col-12">
+                            <label for="{{ field.id_for_label }}" class="field"></label>
+                            {{ field|bootstrap }}
+                            {% for error in field.errors %}
+                            <p class="help is-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                        <br>
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" value="Entrar" class="btn btn-outline-primary rounded-pill col-md-10">
+                        </div>
+                        <br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
