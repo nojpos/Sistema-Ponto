@@ -37,7 +37,7 @@
                                 <div>
                                     <a class="btn btn-outline-primary" href="{% url 'registar_ponto'%}" style="height:120px; width:280px" role="button">Registrar Ponto</a>
 
-                                    {% if func.cargo.descricao_cargo == 'Gerente' %}
+                                    {% if func.cargo.cargo_chefe %}
                                         <a class="btn btn-outline-primary" href="{% url 'relatorio'%}" style="height:120px; width:280px" role="button">Relatório</a>
                                     {% endif %}
 

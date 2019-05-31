@@ -18,6 +18,7 @@ class ConfiguracaoHora(models.Model):
 
 class CargoFuncionario(models.Model):
     descricao_cargo = models.CharField('Descriçaõ do cargo', max_length=128)
+    cargo_chefe = models.BooleanField('Cargo Chefe')
 
     def __str__(self):
         return self.descricao_cargo

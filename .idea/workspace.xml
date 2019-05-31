@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9adb8dfc-09b8-4046-904b-75b9cb5a7848" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_ponto/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/app_ponto/frequencia.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/app_ponto/frequencia.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/app_ponto/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/app_ponto/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/app_ponto/justificar_ponto.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/app_ponto/justificar_ponto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/app_ponto/nao_justificados.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/app_ponto/nao_justificados.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/app_ponto/registro_ponto.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/app_ponto/registro_ponto.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio_inconsistentes.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio_inconsistentes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/templates/registration/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app_ponto/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app_ponto/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app_ponto/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
@@ -241,24 +234,24 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="html" value="122" />
-          <entry key="py" value="204" />
+          <entry key="py" value="565" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="122" />
-          <entry key="Python" value="204" />
+          <entry key="Python" value="565" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app_ponto/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-204">
-              <caret line="26" column="123" selection-start-line="26" selection-start-column="123" selection-end-line="26" selection-end-column="123" />
+            <state relative-caret-position="153">
+              <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -266,8 +259,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app_ponto/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="30" column="64" lean-forward="true" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="79" />
+            <state relative-caret-position="355">
+              <caret line="203" column="73" selection-start-line="203" selection-start-column="73" selection-end-line="203" selection-end-column="73" />
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -278,8 +271,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app_ponto/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="37" />
+            <state relative-caret-position="153">
+              <caret line="9" column="65" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="65" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -290,65 +283,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="248">
-              <caret line="45" column="68" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
+            <state relative-caret-position="146">
+              <caret line="39" column="68" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="68" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/frequencia.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-406">
-              <caret line="30" column="110" lean-forward="true" selection-start-line="30" selection-start-column="28" selection-end-line="30" selection-end-column="110" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/nao_justificados.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="278">
-              <caret line="67" column="79" selection-start-line="67" selection-start-column="79" selection-end-line="67" selection-end-column="79" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/registro_ponto.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2414">
-              <caret line="142" column="62" selection-start-line="142" selection-start-column="62" selection-end-line="142" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/justificar_ponto.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio_inconsistentes.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="79" column="31" lean-forward="true" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -375,14 +317,14 @@
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio.html" />
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/registro_ponto.html" />
         <option value="$PROJECT_DIR$/projeto_ponto/settings.py" />
-        <option value="$PROJECT_DIR$/app_ponto/models.py" />
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/index.html" />
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio_inconsistentes.html" />
-        <option value="$PROJECT_DIR$/app_ponto/views.py" />
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/frequencia.html" />
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/justificar_ponto.html" />
         <option value="$PROJECT_DIR$/app_ponto/urls.py" />
         <option value="$PROJECT_DIR$/app_ponto/templates/app_ponto/nao_justificados.html" />
+        <option value="$PROJECT_DIR$/app_ponto/views.py" />
+        <option value="$PROJECT_DIR$/app_ponto/models.py" />
       </list>
     </option>
   </component>
@@ -477,7 +419,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.22418879" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.22307692" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -560,44 +502,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_ponto/models.py">
+    <entry file="file://$PROJECT_DIR$/app_ponto/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204">
-          <caret line="26" column="123" selection-start-line="26" selection-start-column="123" selection-end-line="26" selection-end-column="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio_inconsistentes.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="79" column="31" lean-forward="true" selection-start-line="79" selection-start-column="31" selection-end-line="79" selection-end-column="31" />
+        <state relative-caret-position="153">
+          <caret line="9" column="65" selection-start-line="9" selection-start-column="51" selection-end-line="9" selection-end-column="65" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app_ponto/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="30" column="64" lean-forward="true" selection-start-line="30" selection-start-column="64" selection-end-line="30" selection-end-column="79" />
+        <state relative-caret-position="355">
+          <caret line="203" column="73" selection-start-line="203" selection-start-column="73" selection-end-line="203" selection-end-column="73" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/index.html">
+    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/relatorio_inconsistentes.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="45" column="68" selection-start-line="45" selection-start-column="68" selection-end-line="45" selection-end-column="68" />
+        <state relative-caret-position="229">
+          <caret line="52" column="54" selection-start-line="52" selection-start-column="42" selection-end-line="52" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/justificar_ponto.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
         </state>
       </provider>
     </entry>
@@ -605,6 +543,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2414">
           <caret line="142" column="62" selection-start-line="142" selection-start-column="62" selection-end-line="142" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/nao_justificados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="67" column="79" selection-start-line="67" selection-start-column="79" selection-end-line="67" selection-end-column="79" />
         </state>
       </provider>
     </entry>
@@ -618,27 +563,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_ponto/urls.py">
+    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="37" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="37" />
+        <state relative-caret-position="146">
+          <caret line="39" column="68" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="68" />
           <folding>
-            <element signature="e#0#28#0" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#1;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#2;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#3;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/justificar_ponto.html">
+    <entry file="file://$PROJECT_DIR$/app_ponto/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="56" column="132" selection-start-line="56" selection-start-column="132" selection-end-line="56" selection-end-column="132" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app_ponto/templates/app_ponto/nao_justificados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="67" column="79" selection-start-line="67" selection-start-column="79" selection-end-line="67" selection-end-column="79" />
+        <state relative-caret-position="153">
+          <caret line="20" column="52" lean-forward="true" selection-start-line="20" selection-start-column="52" selection-end-line="20" selection-end-column="52" />
         </state>
       </provider>
     </entry>

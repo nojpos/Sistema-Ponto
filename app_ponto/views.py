@@ -23,6 +23,7 @@ def lista_frequencia(request):
     return render(request, 'app_ponto/frequencia.html', {'frequencia': frequencia, 'user': user})
 
 
+@login_required
 def lista_nao_justificados(request):
     user = request.user
     func = Funcionario.objects.get(usuario=user)
@@ -31,6 +32,7 @@ def lista_nao_justificados(request):
     return render(request, 'app_ponto/nao_justificados.html', {'nao_justificada': frequencia_inconsistente_nao_justificada, 'user': user})
 
 
+@login_required
 def relatorio_inconsistentes(request):
     frequencia = Frequencia.objects.all()
     user = request.user
@@ -162,37 +164,49 @@ def registar_ponto(request):
 
             #Esses condicionais verificam a quantidade de registros que existem na frequencia para poder adicionar um novo registro
             if qtd_fun == 0:
-                post.hora_ponto = hora_atual.time()
-                post.funcionario = func
-                post.tipo_ponto = entrada
-                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1)
-                post.save()
+                if func.conf_hora.conf_hora_entrada_1 != None:
+                    post.hora_ponto = hora_atual.time()
+                    post.funcionario = func
+                    post.tipo_ponto = entrada
+                    post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1)
+                    post.save()
+                else:
+                    return HttpResponse('Não existe horário configurado')
 
             elif qtd_fun == 1:
-                post.hora_ponto = hora_atual.time()
-                post.funcionario = func
-                post.tipo_ponto = saida
-                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_1)
-                post.save()
+                if func.conf_hora.conf_hora_saida_1 != None:
+                    post.hora_ponto = hora_atual.time()
+                    post.funcionario = func
+                    post.tipo_ponto = saida
+                    post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_1)
+                    post.save()
+                else:
+                    return HttpResponse('Não existe horário configurado')
 
             elif qtd_fun == 2:
-                post.hora_ponto = hora_atual.time()
-                post.funcionario = func
-                post.tipo_ponto = entrada
-                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_2)
-                post.save()
+                if func.conf_hora.conf_hora_entrada_2 != None:
+                    post.hora_ponto = hora_atual.time()
+                    post.funcionario = func
+                    post.tipo_ponto = entrada
+                    post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_2)
+                    post.save()
+                else:
+                    return HttpResponse('Não existe horário configurado')
 
             elif qtd_fun == 3:
-                post.hora_ponto = hora_atual.time()
-                post.funcionario = func
-                post.tipo_ponto = saida
-                post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_2)
-                post.save()
+                if func.conf_hora.conf_hora_saida_2 != None:
+                    post.hora_ponto = hora_atual.time()
+                    post.funcionario = func
+                    post.tipo_ponto = saida
+                    post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_2)
+                    post.save()
+                else:
+                    return HttpResponse('Não existe horário configurado')
 
             else:
                 return HttpResponse('O funcionário {} já registrou o ponto 4 vezes'.format(func))
 
-            return redirect('frequencia')
+            return redirect('registar_ponto')
 
         else:
             form = FrequenciaForm()
@@ -200,6 +214,7 @@ def registar_ponto(request):
     return render(request, 'app_ponto/registro_ponto.html', {'form': form, 'qtd_fun': qtd_fun, 'func': func})
 
 
+@login_required
 def justificar_inconsistente(request, frequencia_id):
     frequencia = Frequencia.objects.get(pk=frequencia_id)
     form = JustificativaForm(request.POST or None, instance=frequencia)
