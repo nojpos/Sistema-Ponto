@@ -1,0 +1,92 @@
+{% if user.is_authenticated %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+                .click
+                {
+                    color: red;
+                }
+
+
+
+
+
+
+
+    </style>
+
+    <title>Relatório Inconsistente</title>
+    <link rel="Shortcut Icon" href="C:\Users\Black Mesa\Pictures\like.png">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+</head>
+
+<body>
+
+<div class="container col-md-12" style="margin-top: 10px">
+
+    <div class="card border-primary mb-3">
+
+        <h5 class="card-header text-center border-primary">Relatório de Pontos Inconsistente</h5>
+        <div class="card-body">
+
+            <div>
+                <a class="btn btn-outline-primary" href="{% url 'home'%}" role="button">Início</a>
+                <a class="btn btn-outline-primary" href="{% url 'relatorio'%}" role="button">Relatório</a>
+            </div>
+
+            <hr>
+
+            <h1 id="txt" class="card-title text-center"></h1>
+            <br>
+            <div class="text-center">
+                <p></p>
+            </div>
+
+            <div>
+
+                {% for frequencia in frequencia_inconsistente %}
+
+                    <div>
+                        <b>Nome: </b>{{ frequencia.funcionario.nome }}
+                        <br>
+                        <b>Hora do registro: </b>{{ frequencia.hora_ponto }}
+                        <br>
+                        <b>Datado registro: </b>{{ frequencia.data_resgistro }}
+                        <br>
+                        <b>Status do registro: </b>{{ frequencia.status_ponto }}
+                        <br>
+                        <b>IP da maquina: </b>{{ frequencia.ip_registro }}
+                        <br>
+                        <b>Tipo registro: </b> {{ frequencia.tipo_ponto }}
+                    </div>
+                    <br>
+
+                    {% if frequencia.status_ponto.descricao == "Inconsistente" %}
+                        {% if frequencia.juntificativa == Null %}
+                        {% endif %}
+                    {% endif %}
+                    {% if frequencia.juntificativa != Null %}
+                        <p><b> Justificativa: </b>{{ frequencia.juntificativa }}</p>
+                    {% endif %}
+
+                    <hr>
+
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+{% endif %}

@@ -171,7 +171,7 @@ def registar_ponto(request):
                     post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_1)
                     post.save()
                 else:
-                    return HttpResponse('Não existe horário configurado')
+                    return render(request, 'app_ponto/erro_qtd_maxima_ponto.html', {'func': func})
 
             elif qtd_fun == 1:
                 if func.conf_hora.conf_hora_saida_1 != None:
@@ -181,7 +181,7 @@ def registar_ponto(request):
                     post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_1)
                     post.save()
                 else:
-                    return HttpResponse('Não existe horário configurado')
+                    return render(request, 'app_ponto/erro_qtd_maxima_ponto.html', {'func': func})
 
             elif qtd_fun == 2:
                 if func.conf_hora.conf_hora_entrada_2 != None:
@@ -191,7 +191,7 @@ def registar_ponto(request):
                     post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_entrada_2)
                     post.save()
                 else:
-                    return HttpResponse('Não existe horário configurado')
+                    return render(request, 'app_ponto/erro_qtd_maxima_ponto.html', {'func': func})
 
             elif qtd_fun == 3:
                 if func.conf_hora.conf_hora_saida_2 != None:
@@ -201,10 +201,10 @@ def registar_ponto(request):
                     post.status_ponto = verificar_hora(hora_atual.time(), func.conf_hora.conf_hora_saida_2)
                     post.save()
                 else:
-                    return HttpResponse('Não existe horário configurado')
+                    return render(request, 'app_ponto/erro_qtd_maxima_ponto.html', {'func': func})
 
             else:
-                return HttpResponse('O funcionário {} já registrou o ponto 4 vezes'.format(func))
+                return render(request, 'app_ponto/erro_qtd_maxima_ponto.html', {'func': func})
 
             return redirect('registar_ponto')
 
@@ -225,3 +225,17 @@ def justificar_inconsistente(request, frequencia_id):
             return redirect('frequencia')
     else:
         return render(request, 'app_ponto/justificar_ponto.html', {'form': form, 'frequencia': frequencia})
+
+
+@login_required
+def relatorio(request):
+    user = request.user
+    func = Funcionario.objects.get(usuario=user)
+    funcionario = Funcionario.objects.filter(lider=func.id)
+    return render(request, 'app_ponto/relatorio.html', {'funcionario': funcionario, 'user': user, 'func': func})
+
+
+
+def relatorio_pontos_inconsistentes(request, funcionario_id):
+    frequencia_inconsistente = Frequencia.objects.filter(funcionario=funcionario_id, status_ponto=2)
+    return render(request, 'app_ponto/relatorio_pontos_inconsistentes.html', {'frequencia_inconsistente': frequencia_inconsistente})
