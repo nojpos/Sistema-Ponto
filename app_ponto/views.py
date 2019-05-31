@@ -57,6 +57,7 @@ def verificar_hora(hora_atual, config_hora):
         inco = StatusPonto.objects.get(id=2)
         return inco
 
+
 #Função para testes
 @login_required
 def teste_registro_ponto(request):
@@ -235,7 +236,8 @@ def relatorio(request):
     return render(request, 'app_ponto/relatorio.html', {'funcionario': funcionario, 'user': user, 'func': func})
 
 
-
+@login_required
 def relatorio_pontos_inconsistentes(request, funcionario_id):
     frequencia_inconsistente = Frequencia.objects.filter(funcionario=funcionario_id, status_ponto=2)
-    return render(request, 'app_ponto/relatorio_pontos_inconsistentes.html', {'frequencia_inconsistente': frequencia_inconsistente})
+    func = Funcionario.objects.get(pk=funcionario_id)
+    return render(request, 'app_ponto/relatorio_pontos_inconsistentes.html', {'frequencia_inconsistente': frequencia_inconsistente, 'func': func})
